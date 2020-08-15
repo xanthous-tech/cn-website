@@ -1,38 +1,25 @@
-import styled from 'styled-components';
+import React, { FC, PropsWithChildren } from 'react';
 
-const Container = styled.main`
-  a {
-    color: #007dfa;
-    text-decoration: none;
-  }
+import { Grommet, base, ThemeType } from 'grommet';
+import { deepMerge } from 'grommet/utils';
 
-  a:hover {
-    text-decoration: underline;
-  }
-
-  p {
-    color: #394548;
-    margin: 16px 0;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    margin-bottom: 0;
-    line-height: 1.15;
-  }
-
-  h1 + p,
-  h2 + p,
-  h3 + p,
-  h4 + p,
-  h5 + p,
-  h6 + p {
-    margin-top: 5px;
-  }
-`;
+const Container: FC = ({ children }: PropsWithChildren<any>) => (
+  <Grommet
+    theme={
+      deepMerge(base, {
+        global: {
+          colors: {
+            brand: '#17a5ff',
+          },
+          font: {
+            family: 'Hiragino Sans',
+          },
+        },
+      }) as ThemeType
+    }
+  >
+    {children}
+  </Grommet>
+);
 
 export default Container;

@@ -3,30 +3,13 @@ import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet, createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
-  *, *:before, *:after {
-    box-sizing: border-box;
-  }
-
-  html {
-    font-size: 62.5%;
-  }
-
   body {
-    font-size: 16px;
-    font-size: 1.6rem;
-    font-family: 'Helvetica Neue', 'Arial', sans-serif;
-    color: #313a3d;
-    width: 100%;
-    margin: 0 auto;
-    padding: 0 16px;
-    line-height: 1.6;
+    margin: 0;
   }
   
-  @media (min-width: 770px) {
-    body {
-      width: 600px;
-      line-height: 1.5;
-    }
+  @font-face {
+    font-family: 'Hiragino Sans';
+    src: url('/hiragino_sans.woff');  
   }
 `;
 
@@ -68,6 +51,11 @@ export default class MyDocument extends Document {
       <Html>
         <Head>
           <link rel="icon" href="/favicon.ico" />
+          <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+          <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+          <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+          <link rel="manifest" href="/site.webmanifest" />
+          <link rel="preload" href="/hiragino_sans.woff" as="font" crossOrigin="" />
         </Head>
         <body>
           <Main />

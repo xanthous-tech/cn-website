@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+     viewBox="0 0 201 58" style="enable-background:new 0 0 201 58;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#F4F7F9;}
+	.st1{fill:#FFCA17;}
+	.st2{fill:#B78D16;}
+	.st3{fill:#17A5FF;}
+	.st4{fill:#00045C;}
+	.st5{fill:#1866D6;}
+	.st6{fill:none;}
+	.st7{font-family:'Hiragino Sans';}
+	.st8{font-size:36px;}
+	.st9{fill:url(#SVGID_1_);}
+	.st10{fill:#C9C9C9;}
+	.st11{fill:url(#SVGID_2_);}
+	.st12{fill:url(#SVGID_3_);}
+</style>
+    <rect x="54.02" y="14.36" class="st6" width="149.65" height="30.22"/>
+    <text transform="matrix(1 0 0 1 54.0221 42.3699)" class="st7 st8">先思科技</text>
+    <g>
+
+		<rect x="29.45" y="5.38" transform="matrix(0.8941 0.4479 -0.4479 0.8941 11.0271 -14.6805)" class="st1" width="14.2" height="21.19"/>
+        <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="43.0193" y1="53.1777" x2="33.1325" y2="34.0291">
+		<stop  offset="0.7754" style="stop-color:#B78D16"/>
+            <stop  offset="1" style="stop-color:#A88114"/>
+	</linearGradient>
+        <polygon class="st9" points="35.59,54.03 48.14,47.38 38.22,28.66 25.68,35.3 	"/>
+        <polygon class="st1" points="25.68,35.3 25.46,22.27 38.21,28.66 	"/>
+        <path class="st10" d="M27.59,22.13l-0.22,13.03L27.59,22.13z"/>
+
+        <rect x="7.48" y="30.97" transform="matrix(-0.8941 -0.4479 0.4479 -0.8941 9.0036 85.2558)" class="st4" width="14.2" height="21.19"/>
+        <linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="8.1909" y1="9.9397" x2="25.6302" y2="27.9933">
+		<stop  offset="0.5088" style="stop-color:#17A5FF"/>
+            <stop  offset="0.8468" style="stop-color:#0F69C3"/>
+	</linearGradient>
+        <polygon class="st11" points="15.55,3.51 3,10.16 12.92,28.89 25.46,22.24 	"/>
+        <linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="13.8024" y1="31.2358" x2="24.8149" y2="28.9147">
+		<stop  offset="0.8468" style="stop-color:#00045C"/>
+            <stop  offset="1" style="stop-color:#000230"/>
+	</linearGradient>
+        <polygon class="st12" points="25.46,22.24 25.68,35.27 12.93,28.88 	"/>
+        <path class="st10" d="M25.46,22.24l0.22,13.03L25.46,22.24z"/>
+</g>
+</svg>

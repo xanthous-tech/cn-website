@@ -13,7 +13,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
   ],
-  ignorePatterns: ['node_modules/', 'next.config.js', '*.d.ts'],
+  ignorePatterns: ['node_modules/', 'next.config.js', '*.d.ts', '.eslintrc.js'],
   rules: {
     'consistent-return': 'warn',
     'max-len': ['warn', 150],
@@ -25,6 +25,5 @@ module.exports = {
     'import/prefer-default-export': 'off',
     '@typescript-eslint/no-use-before-define': 'off',
     'no-underscore-dangle': 'off',
-    '@typescript-eslint/ban-ts-ignore': 'warn',
   },
 };
