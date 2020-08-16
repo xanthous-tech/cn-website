@@ -25,5 +25,9 @@ module.exports = {
     'import/prefer-default-export': 'off',
     '@typescript-eslint/no-use-before-define': 'off',
     'no-underscore-dangle': 'off',
+    '@typescript-eslint/no-unsafe-member-access': 'warn',
+    '@typescript-eslint/no-unsafe-assignment': 'warn',
+    '@typescript-eslint/no-unsafe-call': 'warn',
+    'react/require-default-props': 'off',
   },
 };

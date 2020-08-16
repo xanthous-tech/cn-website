@@ -12,7 +12,8 @@ const Container: FC = ({ children }: PropsWithChildren<any>) => (
             brand: '#17a5ff',
           },
           font: {
-            family: 'Hiragino Sans',
+            family:
+              '"Helvetica Neue", Arial, "Hiragino Sans GB","Hiragino Sans GB W3", "Microsoft YaHei", "Wenquanyi Micro Hei", "Hiragino Sans", sans-serif',
           },
         },
       }) as ThemeType
