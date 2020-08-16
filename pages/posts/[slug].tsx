@@ -89,7 +89,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   const { data: currentUser } = await api.getUser();
   const { data: repos } = await api.getRepos(currentUser.login);
-  const [blogRepo] = repos.filter((repo) => repo.slug === 'blog');
+  const [blogRepo] = repos.filter((repo) => repo.slug === 'x-tech-blog');
   const { data: docs } = await api.getDocs(blogRepo.namespace);
 
   const paths: Array<{ params: { [key: string]: string | string[] } }> = docs
@@ -98,7 +98,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: true,
+    fallback: false,
   };
 };
 
