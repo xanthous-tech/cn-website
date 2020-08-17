@@ -26,13 +26,17 @@ const BlogListContainer = styled(Box)`
     text-decoration: none;
   }
 
+  a:hover span {
+    text-decoration: underline;
+  }
+
+  a:hover .time-container {
+    text-decoration: none;
+  }
+
   time {
     margin-left: 10px;
     font-weight: normal;
-  }
-
-  time:hover {
-    text-decoration: none;
   }
 `;
 
@@ -47,13 +51,13 @@ const BlogPage: FC<BlogPageProps> = ({ repo, docs }: BlogPageProps) => (
         <Heading level="2" color="dark-1">
           {repo.name}
         </Heading>
-        <ul id="posts">
+        <ul>
           {docs.map((doc) => (
             <li key={doc.slug}>
               <Link href={`/posts/${doc.slug}`}>
                 <Anchor>
-                  {doc.title}
-                  <Text color="dark-6" size="small">
+                  <Text>{doc.title}</Text>
+                  <Text className="time-container" color="dark-6" size="small">
                     <time>{moment(doc.created_at).tz(moment.tz.guess()).format('LL')}</time>
                   </Text>
                 </Anchor>
