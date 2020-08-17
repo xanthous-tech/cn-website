@@ -34,3 +34,5 @@ yarn-error.log*
 *.pem
 login_ssh.sh
 deploy.sh
+
+/public/img

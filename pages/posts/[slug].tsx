@@ -6,7 +6,7 @@ import moment from 'moment-timezone';
 import sanitizeHtml from 'sanitize-html';
 import parse from 'html-react-parser';
 import Highlight from 'react-highlight';
-import { Box, Heading, Main, Text } from 'grommet';
+import { Box, Heading, Image, Main, Text } from 'grommet';
 
 import Container from '../../components/Container';
 import SiteHeader from '../../components/SiteHeader';
@@ -45,7 +45,8 @@ const PostPage: FC<PostPageProps> = ({ doc }: PostPageProps) => {
     return <div>Loading...</div>;
   }
 
-  let postHtml = doc.body_html.replace(CDN_ROOT, '/api/img');
+  // let postHtml = doc.body_html.replace(CDN_ROOT, '/api/img');
+  let postHtml = doc.body_html;
   postHtml = sanitizeHtml(postHtml, {
     allowedTags: sanitizeHtml.defaults.allowedTags.concat(['h1', 'h2', 'img']),
     allowedAttributes: Object.assign(sanitizeHtml.defaults.allowedAttributes, {
@@ -54,6 +55,31 @@ const PostPage: FC<PostPageProps> = ({ doc }: PostPageProps) => {
   });
   const blog = parse(postHtml, {
     replace: (domNode: any) => {
+      if (domNode.name && domNode.name === 'img') {
+        // console.log(domNode);
+        let { src } = domNode.attribs;
+
+        // only run on server side
+        if (typeof window === 'undefined') {
+          console.log('downloading image', src);
+          const url = `${src as string}`; // copying the src
+          // eslint-disable-next-line @typescript-eslint/no-floating-promises
+          import('node-fetch')
+            .then((fetch) => fetch.default(url))
+            .then((response) => response.buffer())
+            .then((buffer) => Promise.all([import('fs-extra'), import('path')]).then(([fs, path]) => {
+              const imgPath = path.resolve(process.cwd(), 'public', 'img', url.replace(`${CDN_ROOT}/`, ''));
+              console.log('image downloaded to', imgPath);
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+              return fs.outputFile(imgPath, buffer);
+            }));
+
+          src = src.replace(CDN_ROOT, '/img');
+        }
+
+        return <Image src={src} fill />;
+      }
+
       if (domNode.attribs && 'data-language' in domNode.attribs) {
         // console.log(domNode);
         const textNode = domNode.children[0].children[0].children[0].children[0];
