@@ -11,6 +11,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
     "dotenv": "^8.2.0",
     "fs-extra": "^9.0.1",
     "grommet": "^2.14.0",
@@ -30,6 +31,7 @@
     "styled-components": "^5.1.1"
   },
   "devDependencies": {
+    "@types/cheerio": "^0.22.21",
     "@types/dotenv": "^8.2.0",
     "@types/fs-extra": "^9.0.1",
     "@types/moment-timezone": "^0.5.30",

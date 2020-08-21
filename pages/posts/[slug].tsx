@@ -7,6 +7,7 @@ import sanitizeHtml from 'sanitize-html';
 import parse from 'html-react-parser';
 import Highlight from 'react-highlight';
 import { Box, Heading, Image, Main, Text } from 'grommet';
+import cheerio from 'cheerio';
 
 import Container from '../../components/Container';
 import SiteHeader from '../../components/SiteHeader';
@@ -45,39 +46,11 @@ const PostPage: FC<PostPageProps> = ({ doc }: PostPageProps) => {
     return <div>Loading...</div>;
   }
 
-  // let postHtml = doc.body_html.replace(CDN_ROOT, '/api/img');
-  let postHtml = doc.body_html;
-  postHtml = sanitizeHtml(postHtml, {
-    allowedTags: sanitizeHtml.defaults.allowedTags.concat(['h1', 'h2', 'img']),
-    allowedAttributes: Object.assign(sanitizeHtml.defaults.allowedAttributes, {
-      div: (sanitizeHtml.defaults.allowedAttributes.div || []).concat(['data-language']),
-    }),
-  });
-  const blog = parse(postHtml, {
+  const blog = parse(doc.body_html, {
     replace: (domNode: any) => {
       if (domNode.name && domNode.name === 'img') {
-        // console.log(domNode);
-        let { src } = domNode.attribs;
-
-        // only run on server side
-        if (typeof window === 'undefined') {
-          console.log('downloading image', src);
-          const url = `${src as string}`; // copying the src
-          // eslint-disable-next-line @typescript-eslint/no-floating-promises
-          import('node-fetch')
-            .then((fetch) => fetch.default(url))
-            .then((response) => response.buffer())
-            .then((buffer) => Promise.all([import('fs-extra'), import('path')]).then(([fs, path]) => {
-              const imgPath = path.resolve(process.cwd(), 'public', 'img', url.replace(`${CDN_ROOT}/`, ''));
-              console.log('image downloaded to', imgPath);
-              // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-              return fs.outputFile(imgPath, buffer);
-            }));
-
-          src = src.replace(CDN_ROOT, '/img');
-        }
-
-        return <Image src={src} fill />;
+        const { src } = domNode.attribs;
+        return <Image src={(src as string).replace(CDN_ROOT, '/img')} fill />;
       }
 
       if (domNode.attribs && 'data-language' in domNode.attribs) {
@@ -142,6 +115,37 @@ export const getStaticProps: GetStaticProps = async ({ params: { namespace, slug
   }
 
   const { data: doc } = await api.getDoc(nsp, slug as string);
+
+  doc.body_html = sanitizeHtml(doc.body_html, {
+    allowedTags: sanitizeHtml.defaults.allowedTags.concat(['h1', 'h2', 'img']),
+    allowedAttributes: Object.assign(sanitizeHtml.defaults.allowedAttributes, {
+      div: (sanitizeHtml.defaults.allowedAttributes.div || []).concat(['data-language']),
+    }),
+  });
+
+  const $ = cheerio.load(doc.body_html);
+
+  const imgs: string[] = [];
+
+  $('img').each((idx, el) => {
+    imgs.push($(el).attr('src'));
+  });
+
+  await Promise.all(
+    imgs.map((url) => {
+      console.log('downloading image', url);
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      return import('node-fetch')
+        .then((fetch) => fetch.default(url))
+        .then((response) => response.buffer())
+        .then((buffer) => Promise.all([import('fs-extra'), import('path')]).then(([fs, path]) => {
+          const imgPath = path.resolve(process.cwd(), 'public', 'img', url.replace(`${CDN_ROOT}/`, ''));
+          console.log('image downloaded to', imgPath);
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+          return fs.outputFile(imgPath, buffer);
+        }));
+    }),
+  );
 
   return {
     props: {
