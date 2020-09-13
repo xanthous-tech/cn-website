@@ -22,7 +22,7 @@
     "moment-timezone": "^0.5.31",
     "next": "9.5.2",
     "next-images": "^1.4.1",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-highlight": "^0.12.0",
