@@ -56,6 +56,7 @@ export default class MyDocument extends Document {
           <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
           <link rel="manifest" href="/site.webmanifest" />
           <link rel="preload" href="/hiragino_sans.woff" as="font" crossOrigin="" />
+          <script src="https://hm.baidu.com/hm.js?d5ce16fe4cf6d3f9c95c4593f632919a" async></script>
         </Head>
         <body>
           <Main />
