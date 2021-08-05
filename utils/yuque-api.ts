@@ -117,6 +117,6 @@ export class YuqueApi {
       headers: this.headers,
       ...options,
     });
-    return ((await response.json()) as unknown) as YuquePayload<T>;
+    return (await response.json()) as unknown as YuquePayload<T>;
   }
 }
